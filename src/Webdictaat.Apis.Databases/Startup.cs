@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Webdictaat.Apis.Databases.Model;
+using MySQL.Data.EntityFrameworkCore.Extensions;
 
 namespace Webdictaat.Apis.Databases
 {
@@ -27,6 +29,8 @@ namespace Webdictaat.Apis.Databases
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
+
+
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -37,6 +41,14 @@ namespace Webdictaat.Apis.Databases
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
+            services.AddDbContext<MyDbContext>(options =>
+            {
+                options.UseMySQL(Configuration.GetConnectionString("DatabaasConnection"));
+            });
+
+            services.AddSingleton<ISecretService>(new SecretService(Configuration["secret"]));
+
+            services.AddCors();
             services.AddMvc();
         }
 
@@ -49,6 +61,12 @@ namespace Webdictaat.Apis.Databases
             app.UseApplicationInsightsRequestTelemetry();
 
             app.UseApplicationInsightsExceptionTelemetry();
+
+            app.UseCors(b => b
+               .AllowAnyOrigin()
+               .AllowCredentials()
+               .AllowAnyHeader()
+               .AllowAnyMethod());
 
             app.UseMvc();
         }
