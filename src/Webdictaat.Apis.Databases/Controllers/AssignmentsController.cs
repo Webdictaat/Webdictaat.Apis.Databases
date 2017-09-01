@@ -23,13 +23,33 @@ namespace webs2_api.Controllers
             _secretService = secretService;
         }
 
+
+        /// <summary>
+        /// Returns all the submissions of an assignment
+        /// </summary>
+        /// <param name="assignmentId"></param>
+        /// <returns></returns>
+        [HttpGet("{assignmentId}")]
+        public AssignmentVM Get(int assignmentId)
+        {
+            var assignment = _repo.Assignments.Where(s => s.ID == assignmentId).FirstOrDefault();
+
+            if (assignment == null)
+                return null;
+
+            var response = new AssignmentVM();
+            response.AssignmentId = assignment.ID;
+            response.ExpectedOutput = assignment.resultsHTML;
+            return response;
+        }
+
         /// <summary>
         /// Returns all the submissions of an assignment
         /// </summary>
         /// <param name="assignmentId"></param>
         /// <returns></returns>
         [HttpGet("{assignmentId}/submissions/{userId}")]
-        public SubmissionVM Get(int assignmentId, string userId)
+        public SubmissionVM GetSubmission(int assignmentId, string userId)
         {
 
             var submission = _repo.Submissions.Where(s => s.AssignmentId == assignmentId && s.Email == userId).FirstOrDefault();
@@ -41,6 +61,7 @@ namespace webs2_api.Controllers
             response.AssignmentId = submission.AssignmentId;
             response.Email = submission.Email;
             response.Query = submission.Query;
+            response.Timestamp = submission.TimeStamp;
             response.Message = submission.Message;
             response.StatusId = submission.StatusId;
             
@@ -48,7 +69,7 @@ namespace webs2_api.Controllers
 
             {
                 var assignment = _repo.Assignments.FirstOrDefault(a => a.ID == submission.AssignmentId);
-                response.AssignmentToken = _secretService.GetAssignmentToken(response.Email, assignment.OriginalAssignmentId);
+                response.AssignmentToken = _secretService.GetAssignmentToken(response.Email, assignment.ID);
             }
 
             return response;
@@ -84,7 +105,7 @@ namespace webs2_api.Controllers
             }
 
             _repo.SaveChanges();
-            return Get(assignmentId, form.Email);
+            return GetSubmission(assignmentId, form.Email);
         }
 
 

@@ -17,11 +17,6 @@ namespace Webdictaat.Apis.Databases.Model
         private string _secret;
         private SHA1 _sha1;
 
-        public SecretService()
-        {
-            _sha1 = System.Security.Cryptography.SHA1.Create();
-        }
-
         public SecretService(string secret)
         {
             _sha1 = System.Security.Cryptography.SHA1.Create();
