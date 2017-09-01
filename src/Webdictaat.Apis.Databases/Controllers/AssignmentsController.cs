@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using webs2_api.Model;
 using Webdictaat.Apis.Databases.Model;
 using Webdictaat.Apis.Databases.ViewModel;
+using Microsoft.Extensions.Logging;
 
 namespace webs2_api.Controllers
 {
@@ -16,8 +17,9 @@ namespace webs2_api.Controllers
     {
         private MyDbContext _repo;
         private ISecretService _secretService;
+        private ILoggerFactory _logger;
 
-        public AssignmentsController(MyDbContext dbContext, ISecretService secretService)
+        public AssignmentsController(MyDbContext dbContext, ISecretService secretService, ILoggerFactory loggerFactory)
         {
             _repo = dbContext;
             _secretService = secretService;
@@ -62,29 +64,39 @@ namespace webs2_api.Controllers
         [HttpPost("{assignmentId}/submissions")]
         public SubmissionVM Post(int assignmentId, [FromBody] SubmissionVM form)
         {
-            var submission = _repo.Submissions.Where(s => s.AssignmentId == assignmentId && s.Email == form.Email).FirstOrDefault();
-
-            if (submission == null)
+            try
             {
-                submission = new Submission()
+
+
+                var submission = _repo.Submissions.Where(s => s.AssignmentId == assignmentId && s.Email == form.Email).FirstOrDefault();
+
+                if (submission == null)
                 {
-                    Email = form.Email,
-                    Query = form.Query,
-                    TimeStamp = DateTime.Now,
-                    AssignmentId = assignmentId
-                };
+                    submission = new Submission()
+                    {
+                        Email = form.Email,
+                        Query = form.Query,
+                        TimeStamp = DateTime.Now,
+                        AssignmentId = assignmentId
+                    };
 
-                _repo.Submissions.Add(submission);
+                    _repo.Submissions.Add(submission);
+                }
+                else
+                {
+                    submission.StatusId = 0;
+                    submission.Query = form.Query;
+                    submission.TimeStamp = DateTime.Now;
+                }
+
+                _repo.SaveChanges();
+                return Get(assignmentId, form.Email);
             }
-            else
+            catch (Exception e)
             {
-                submission.StatusId = 0;
-                submission.Query = form.Query;
-                submission.TimeStamp = DateTime.Now;
+                _logger.CreateLogger("exception").LogCritical("post submission", e);
+                throw e;
             }
-
-            _repo.SaveChanges();
-            return Get(assignmentId, form.Email);
         }
 
 

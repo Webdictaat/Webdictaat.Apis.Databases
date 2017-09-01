@@ -19,6 +19,8 @@ namespace Webdictaat.Apis.Databases
                 .UseStartup<Startup>()
                 .Build();
 
+
+
             host.Run();
         }
     }
