@@ -18,9 +18,13 @@ namespace Webdictaat.Apis.Databases.Model
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Submission>()
-                .HasKey(c => new { c.Email, c.AssignmentId });
+            var entity = modelBuilder.Entity<Submission>();
+            entity.Property(s => s.Query).HasColumnType("text");
+            entity.HasKey(c => new { c.Email, c.AssignmentId });
+                
+            base.OnModelCreating(modelBuilder);
         }
+
 
         public DbSet<Submission> Submissions { get; set; }
         public DbSet<Assignment> Assignments { get; set; }

@@ -12,6 +12,8 @@ namespace Webdictaat.Apis.Databases.Model
         [Key]
         public int ID { get; set; }
 
+        public string resultsHTML{ get; set; }
+
         public int OriginalAssignmentId { get; set; }
 
         public virtual ICollection<Submission> Submissions { get; set; }

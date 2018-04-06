@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Webdictaat.Apis.Databases.Model;
 using MySQL.Data.EntityFrameworkCore.Extensions;
+using Serilog;
+using System.IO;
 
 namespace Webdictaat.Apis.Databases
 {
@@ -16,6 +18,11 @@ namespace Webdictaat.Apis.Databases
     {
         public Startup(IHostingEnvironment env)
         {
+            Log.Logger = new LoggerConfiguration()
+                .Enrich.FromLogContext()
+                .WriteTo.RollingFile(Path.Combine(env.ContentRootPath, "logs/log-{Date}.txt"))
+                .CreateLogger();
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
@@ -57,6 +64,8 @@ namespace Webdictaat.Apis.Databases
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            loggerFactory.AddSerilog();
+
 
             app.UseApplicationInsightsRequestTelemetry();
 

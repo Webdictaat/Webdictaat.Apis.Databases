@@ -18,5 +18,6 @@ namespace Webdictaat.Apis.Databases.ViewModel
         public string Message { get; set; }
 
         public string AssignmentToken { get; set; }
+        public DateTime Timestamp { get; internal set; }
     }
 }

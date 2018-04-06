@@ -1,0 +1,596 @@
+2017-09-15 11:22:53.520 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/api/assignments/6  
+2017-09-15 11:22:54.299 +02:00 [Information] Request finished in 815.4692ms 404 
+2017-09-15 11:22:54.360 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/favicon.ico  
+2017-09-15 11:22:54.363 +02:00 [Information] Request finished in 3.4303ms 404 
+2017-09-15 11:23:00.570 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/101  
+2017-09-15 11:23:01.009 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.Get (Webdictaat.Apis.Databases)" with arguments (["101"]) - ModelState is Valid
+2017-09-15 11:23:02.329 +02:00 [Information] Executed DbCommand (19ms) [Parameters=[@__assignmentId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`ID`, `s`.`OriginalAssignmentId`, `s`.`resultsHTML`
+FROM `Assignments` AS `s`
+WHERE `s`.`ID` = @__assignmentId_0
+LIMIT 1
+2017-09-15 11:23:02.443 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:23:02.685 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.Get (Webdictaat.Apis.Databases)" in 2022.4288ms
+2017-09-15 11:23:02.692 +02:00 [Information] Request finished in 2121.7104ms 200 application/json; charset=utf-8
+2017-09-15 11:24:05.906 +02:00 [Information] Request starting HTTP/1.1 POST http://localhost:22608/databases/assignments/101/submissions application/json 55
+2017-09-15 11:24:05.929 +02:00 [Information] Request finished in 31.126ms 404 
+2017-09-15 11:24:56.492 +02:00 [Information] Request starting HTTP/1.1 POST http://localhost:22608/assignments/101/submissions application/json 135
+2017-09-15 11:24:56.619 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.Post (Webdictaat.Apis.Databases)" with arguments (["101", "Webdictaat.Apis.Databases.ViewModel.SubmissionVM"]) - ModelState is Valid
+2017-09-15 11:24:56.824 +02:00 [Information] Executed DbCommand (31ms) [Parameters=[@__assignmentId_0='?', @__form_Email_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__form_Email_1)
+LIMIT 1
+2017-09-15 11:24:56.939 +02:00 [Information] Executed DbCommand (5ms) [Parameters=[@p2='?' (Size = 255), @p3='?', @p0='?' (Size = 255), @p1='?'], CommandType='Text', CommandTimeout='30']
+UPDATE `Submissions` SET `Query` = @p0, `TimeStamp` = @p1
+WHERE `Email` = @p2 AND `AssignmentId` = @p3;
+SELECT ROW_COUNT();
+2017-09-15 11:24:56.973 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 11:24:56.989 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:24:57.001 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.Post (Webdictaat.Apis.Databases)" in 496.5074ms
+2017-09-15 11:24:57.006 +02:00 [Information] Request finished in 521.8289ms 200 application/json; charset=utf-8
+2017-09-15 11:43:58.971 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/api/assignments/6  
+2017-09-15 11:43:59.680 +02:00 [Information] Request finished in 758.183ms 404 
+2017-09-15 11:43:59.742 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/favicon.ico  
+2017-09-15 11:43:59.749 +02:00 [Information] Request finished in 7.9047ms 404 
+2017-09-15 11:44:52.037 +02:00 [Information] Request starting HTTP/1.1 POST http://localhost:22608/assignments/102/submissions application/json 777
+2017-09-15 11:44:52.716 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.Post (Webdictaat.Apis.Databases)" with arguments (["102", "Webdictaat.Apis.Databases.ViewModel.SubmissionVM"]) - ModelState is Valid
+2017-09-15 11:44:53.984 +02:00 [Information] Executed DbCommand (2ms) [Parameters=[@__assignmentId_0='?', @__form_Email_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__form_Email_1)
+LIMIT 1
+2017-09-15 11:44:54.216 +02:00 [Information] Executed DbCommand (13ms) [Parameters=[@p0='?' (Size = 255), @p1='?', @p2='?' (Size = 255), @p3='?' (Size = 255), @p4='?', @p5='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO `Submissions` (`Email`, `AssignmentId`, `Message`, `Query`, `StatusId`, `TimeStamp`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2017-09-15 11:44:54.251 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 11:44:54.304 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:44:54.416 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.Post (Webdictaat.Apis.Databases)" in 2280.687ms
+2017-09-15 11:44:54.425 +02:00 [Information] Request finished in 2393.7903ms 200 application/json; charset=utf-8
+2017-09-15 11:45:30.808 +02:00 [Information] Request starting HTTP/1.1 POST http://localhost:22608/assignments/102/submissions application/json 1713
+2017-09-15 11:45:30.855 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.Post (Webdictaat.Apis.Databases)" with arguments (["102", "Webdictaat.Apis.Databases.ViewModel.SubmissionVM"]) - ModelState is Valid
+2017-09-15 11:45:30.917 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__form_Email_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__form_Email_1)
+LIMIT 1
+2017-09-15 11:45:30.980 +02:00 [Information] Executed DbCommand (3ms) [Parameters=[@p2='?' (Size = 255), @p3='?', @p0='?' (Size = 255), @p1='?'], CommandType='Text', CommandTimeout='30']
+UPDATE `Submissions` SET `Query` = @p0, `TimeStamp` = @p1
+WHERE `Email` = @p2 AND `AssignmentId` = @p3;
+SELECT ROW_COUNT();
+2017-09-15 11:45:31.014 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 11:45:31.016 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:45:31.021 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.Post (Webdictaat.Apis.Databases)" in 206.8149ms
+2017-09-15 11:45:31.024 +02:00 [Information] Request finished in 216.7219ms 200 application/json; charset=utf-8
+2017-09-15 11:48:17.407 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102  
+2017-09-15 11:48:17.417 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102/submissions/ssmulder@avans.nl  
+2017-09-15 11:48:17.456 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.Get (Webdictaat.Apis.Databases)" with arguments (["102"]) - ModelState is Valid
+2017-09-15 11:48:17.477 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" with arguments (["102", "ssmulder@avans.nl"]) - ModelState is Valid
+2017-09-15 11:48:17.529 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 11:48:17.532 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:48:17.535 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" in 111.758ms
+2017-09-15 11:48:17.539 +02:00 [Information] Request finished in 122.1146ms 200 application/json; charset=utf-8
+2017-09-15 11:48:17.556 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`ID`, `s`.`OriginalAssignmentId`, `s`.`resultsHTML`
+FROM `Assignments` AS `s`
+WHERE `s`.`ID` = @__assignmentId_0
+LIMIT 1
+2017-09-15 11:48:17.574 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:48:17.580 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.Get (Webdictaat.Apis.Databases)" in 158.4728ms
+2017-09-15 11:48:17.585 +02:00 [Information] Request finished in 191.0563ms 200 application/json; charset=utf-8
+2017-09-15 11:48:21.833 +02:00 [Information] Request starting HTTP/1.1 OPTIONS http://localhost:22608/assignments/102/submissions  
+2017-09-15 11:48:21.844 +02:00 [Information] Request finished in 9.4423ms 204 
+2017-09-15 11:48:21.852 +02:00 [Information] Request starting HTTP/1.1 POST http://localhost:22608/assignments/102/submissions application/json 1912
+2017-09-15 11:48:21.897 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.Post (Webdictaat.Apis.Databases)" with arguments (["102", "Webdictaat.Apis.Databases.ViewModel.SubmissionVM"]) - ModelState is Valid
+2017-09-15 11:48:21.922 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__form_Email_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__form_Email_1)
+LIMIT 1
+2017-09-15 11:48:21.928 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@p3='?' (Size = 255), @p4='?', @p0='?' (Size = 255), @p1='?', @p2='?'], CommandType='Text', CommandTimeout='30']
+UPDATE `Submissions` SET `Query` = @p0, `StatusId` = @p1, `TimeStamp` = @p2
+WHERE `Email` = @p3 AND `AssignmentId` = @p4;
+SELECT ROW_COUNT();
+2017-09-15 11:48:21.953 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 11:48:21.956 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:48:21.959 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.Post (Webdictaat.Apis.Databases)" in 103.8509ms
+2017-09-15 11:48:21.963 +02:00 [Information] Request finished in 110.6874ms 200 application/json; charset=utf-8
+2017-09-15 11:48:21.972 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102/submissions/ssmulder@avans.nl  
+2017-09-15 11:48:21.996 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" with arguments (["102", "ssmulder@avans.nl"]) - ModelState is Valid
+2017-09-15 11:48:22.015 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 11:48:22.018 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:48:22.020 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" in 46.2229ms
+2017-09-15 11:48:22.028 +02:00 [Information] Request finished in 53.6374ms 200 application/json; charset=utf-8
+2017-09-15 11:48:24.039 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102/submissions/ssmulder@avans.nl  
+2017-09-15 11:48:24.057 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" with arguments (["102", "ssmulder@avans.nl"]) - ModelState is Valid
+2017-09-15 11:48:24.078 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 11:48:24.081 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:48:24.084 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" in 41.9365ms
+2017-09-15 11:48:24.088 +02:00 [Information] Request finished in 48.9433ms 200 application/json; charset=utf-8
+2017-09-15 11:48:26.099 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102/submissions/ssmulder@avans.nl  
+2017-09-15 11:48:26.118 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" with arguments (["102", "ssmulder@avans.nl"]) - ModelState is Valid
+2017-09-15 11:48:26.135 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 11:48:26.137 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:48:26.140 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" in 37.9962ms
+2017-09-15 11:48:26.146 +02:00 [Information] Request finished in 46.3952ms 200 application/json; charset=utf-8
+2017-09-15 11:48:28.156 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102/submissions/ssmulder@avans.nl  
+2017-09-15 11:48:28.173 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" with arguments (["102", "ssmulder@avans.nl"]) - ModelState is Valid
+2017-09-15 11:48:28.192 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 11:48:28.195 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:48:28.198 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" in 38.8673ms
+2017-09-15 11:48:28.202 +02:00 [Information] Request finished in 45.8057ms 200 application/json; charset=utf-8
+2017-09-15 11:48:30.213 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102/submissions/ssmulder@avans.nl  
+2017-09-15 11:48:30.230 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" with arguments (["102", "ssmulder@avans.nl"]) - ModelState is Valid
+2017-09-15 11:48:30.250 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 11:48:30.252 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:48:30.255 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" in 39.2769ms
+2017-09-15 11:48:30.259 +02:00 [Information] Request finished in 46.2968ms 200 application/json; charset=utf-8
+2017-09-15 11:48:32.269 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102/submissions/ssmulder@avans.nl  
+2017-09-15 11:48:32.292 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" with arguments (["102", "ssmulder@avans.nl"]) - ModelState is Valid
+2017-09-15 11:48:32.314 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 11:48:32.317 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:48:32.319 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" in 47.9639ms
+2017-09-15 11:48:32.323 +02:00 [Information] Request finished in 54.4809ms 200 application/json; charset=utf-8
+2017-09-15 11:49:03.575 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102  
+2017-09-15 11:49:03.578 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102/submissions/ssmulder@avans.nl  
+2017-09-15 11:49:03.650 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.Get (Webdictaat.Apis.Databases)" with arguments (["102"]) - ModelState is Valid
+2017-09-15 11:49:03.651 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" with arguments (["102", "ssmulder@avans.nl"]) - ModelState is Valid
+2017-09-15 11:49:03.682 +02:00 [Information] Executed DbCommand (1ms) [Parameters=[@__assignmentId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`ID`, `s`.`OriginalAssignmentId`, `s`.`resultsHTML`
+FROM `Assignments` AS `s`
+WHERE `s`.`ID` = @__assignmentId_0
+LIMIT 1
+2017-09-15 11:49:03.685 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:49:03.687 +02:00 [Information] Executed DbCommand (2ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 11:49:03.688 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.Get (Webdictaat.Apis.Databases)" in 106.7633ms
+2017-09-15 11:49:03.691 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:49:03.716 +02:00 [Information] Request finished in 121.0649ms 200 application/json; charset=utf-8
+2017-09-15 11:49:03.716 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" in 103.41ms
+2017-09-15 11:49:03.720 +02:00 [Information] Request finished in 142.926ms 200 application/json; charset=utf-8
+2017-09-15 11:51:59.848 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102  
+2017-09-15 11:51:59.849 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102/submissions/ssmulder@avans.nl  
+2017-09-15 11:51:59.902 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.Get (Webdictaat.Apis.Databases)" with arguments (["102"]) - ModelState is Valid
+2017-09-15 11:51:59.903 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" with arguments (["102", "ssmulder@avans.nl"]) - ModelState is Valid
+2017-09-15 11:51:59.906 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 11:51:59.923 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:51:59.923 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`ID`, `s`.`OriginalAssignmentId`, `s`.`resultsHTML`
+FROM `Assignments` AS `s`
+WHERE `s`.`ID` = @__assignmentId_0
+LIMIT 1
+2017-09-15 11:51:59.923 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" in 74.4536ms
+2017-09-15 11:51:59.923 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:51:59.957 +02:00 [Information] Request finished in 125.4588ms 200 application/json; charset=utf-8
+2017-09-15 11:51:59.958 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.Get (Webdictaat.Apis.Databases)" in 79.798ms
+2017-09-15 11:51:59.962 +02:00 [Information] Request finished in 156.0171ms 200 application/json; charset=utf-8
+2017-09-15 11:52:07.162 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102  
+2017-09-15 11:52:07.163 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102/submissions/ssmulder@avans.nl  
+2017-09-15 11:52:07.201 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.Get (Webdictaat.Apis.Databases)" with arguments (["102"]) - ModelState is Valid
+2017-09-15 11:52:07.203 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" with arguments (["102", "ssmulder@avans.nl"]) - ModelState is Valid
+2017-09-15 11:52:07.221 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 11:52:07.223 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:52:07.244 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" in 59.6392ms
+2017-09-15 11:52:07.245 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`ID`, `s`.`OriginalAssignmentId`, `s`.`resultsHTML`
+FROM `Assignments` AS `s`
+WHERE `s`.`ID` = @__assignmentId_0
+LIMIT 1
+2017-09-15 11:52:07.289 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:52:07.290 +02:00 [Information] Request finished in 107.3195ms 200 application/json; charset=utf-8
+2017-09-15 11:52:07.294 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.Get (Webdictaat.Apis.Databases)" in 127.3341ms
+2017-09-15 11:52:07.298 +02:00 [Information] Request finished in 137.0874ms 200 application/json; charset=utf-8
+2017-09-15 11:53:37.962 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102  
+2017-09-15 11:53:37.964 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102/submissions/ssmulder@avans.nl  
+2017-09-15 11:53:38.023 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.Get (Webdictaat.Apis.Databases)" with arguments (["102"]) - ModelState is Valid
+2017-09-15 11:53:38.023 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" with arguments (["102", "ssmulder@avans.nl"]) - ModelState is Valid
+2017-09-15 11:53:52.064 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 11:53:52.066 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`ID`, `s`.`OriginalAssignmentId`, `s`.`resultsHTML`
+FROM `Assignments` AS `s`
+WHERE `s`.`ID` = @__assignmentId_0
+LIMIT 1
+2017-09-15 11:53:52.091 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:53:52.094 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:53:52.123 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" in 14130.1924ms
+2017-09-15 11:53:52.123 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.Get (Webdictaat.Apis.Databases)" in 14130.3923ms
+2017-09-15 11:53:52.223 +02:00 [Information] Request finished in 14229.2532ms 200 application/json; charset=utf-8
+2017-09-15 11:53:52.223 +02:00 [Information] Request finished in 14263.7563ms 200 application/json; charset=utf-8
+2017-09-15 11:54:47.680 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102  
+2017-09-15 11:54:47.683 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102/submissions/ssmulder@avans.nl  
+2017-09-15 11:54:47.752 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.Get (Webdictaat.Apis.Databases)" with arguments (["102"]) - ModelState is Valid
+2017-09-15 11:54:47.753 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" with arguments (["102", "ssmulder@avans.nl"]) - ModelState is Valid
+2017-09-15 11:54:47.809 +02:00 [Information] Executed DbCommand (1ms) [Parameters=[@__assignmentId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`ID`, `s`.`OriginalAssignmentId`, `s`.`resultsHTML`
+FROM `Assignments` AS `s`
+WHERE `s`.`ID` = @__assignmentId_0
+LIMIT 1
+2017-09-15 11:54:47.810 +02:00 [Information] Executed DbCommand (1ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 11:54:47.835 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:54:47.837 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:54:47.840 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.Get (Webdictaat.Apis.Databases)" in 154.6518ms
+2017-09-15 11:54:47.865 +02:00 [Information] Request finished in 177.4903ms 200 application/json; charset=utf-8
+2017-09-15 11:54:47.870 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" in 184.9902ms
+2017-09-15 11:54:47.874 +02:00 [Information] Request finished in 191.4178ms 204 
+2017-09-15 11:55:04.498 +02:00 [Information] Request starting HTTP/1.1 OPTIONS http://localhost:22608/assignments/102/submissions  
+2017-09-15 11:55:04.502 +02:00 [Information] Request finished in 4.8312ms 204 
+2017-09-15 11:55:04.509 +02:00 [Information] Request starting HTTP/1.1 POST http://localhost:22608/assignments/102/submissions application/json 1807
+2017-09-15 11:55:04.533 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.Post (Webdictaat.Apis.Databases)" with arguments (["102", "Webdictaat.Apis.Databases.ViewModel.SubmissionVM"]) - ModelState is Valid
+2017-09-15 11:55:20.963 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__form_Email_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__form_Email_1)
+LIMIT 1
+2017-09-15 11:55:40.423 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 255), @p1='?', @p2='?' (Size = 255), @p3='?' (Size = 255), @p4='?', @p5='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO `Submissions` (`Email`, `AssignmentId`, `Message`, `Query`, `StatusId`, `TimeStamp`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2017-09-15 11:55:40.440 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 11:55:40.440 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:55:40.440 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.Post (Webdictaat.Apis.Databases)" in 35938.3309ms
+2017-09-15 11:55:40.456 +02:00 [Information] Request finished in 35946.835ms 200 application/json; charset=utf-8
+2017-09-15 11:55:40.478 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102/submissions/ssmulder@avans.nl  
+2017-09-15 11:55:40.503 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" with arguments (["102", "ssmulder@avans.nl"]) - ModelState is Valid
+2017-09-15 11:55:40.524 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 11:55:40.527 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:55:40.530 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" in 48.5873ms
+2017-09-15 11:55:40.536 +02:00 [Information] Request finished in 68.5861ms 200 application/json; charset=utf-8
+2017-09-15 11:55:42.546 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102/submissions/ssmulder@avans.nl  
+2017-09-15 11:55:42.564 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" with arguments (["102", "ssmulder@avans.nl"]) - ModelState is Valid
+2017-09-15 11:55:42.581 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 11:55:42.584 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:55:42.585 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" in 37.7611ms
+2017-09-15 11:55:42.589 +02:00 [Information] Request finished in 44.1046ms 200 application/json; charset=utf-8
+2017-09-15 11:55:44.605 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102/submissions/ssmulder@avans.nl  
+2017-09-15 11:55:44.627 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" with arguments (["102", "ssmulder@avans.nl"]) - ModelState is Valid
+2017-09-15 11:55:44.647 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 11:55:44.650 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:55:44.652 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" in 44.391ms
+2017-09-15 11:55:44.656 +02:00 [Information] Request finished in 52.5403ms 200 application/json; charset=utf-8
+2017-09-15 11:55:46.671 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102/submissions/ssmulder@avans.nl  
+2017-09-15 11:55:46.697 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" with arguments (["102", "ssmulder@avans.nl"]) - ModelState is Valid
+2017-09-15 11:55:46.715 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 11:55:46.718 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:55:46.720 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" in 45.658ms
+2017-09-15 11:55:46.726 +02:00 [Information] Request finished in 55.1521ms 200 application/json; charset=utf-8
+2017-09-15 11:55:48.737 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102/submissions/ssmulder@avans.nl  
+2017-09-15 11:55:48.757 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" with arguments (["102", "ssmulder@avans.nl"]) - ModelState is Valid
+2017-09-15 11:55:48.776 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 11:55:48.778 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:55:48.781 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" in 40.5668ms
+2017-09-15 11:55:48.784 +02:00 [Information] Request finished in 47.079ms 200 application/json; charset=utf-8
+2017-09-15 11:55:50.794 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102/submissions/ssmulder@avans.nl  
+2017-09-15 11:55:50.812 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" with arguments (["102", "ssmulder@avans.nl"]) - ModelState is Valid
+2017-09-15 11:55:50.831 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 11:55:50.833 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 11:55:50.836 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" in 38.8609ms
+2017-09-15 11:55:50.839 +02:00 [Information] Request finished in 45.9531ms 200 application/json; charset=utf-8
+2017-09-15 13:03:25.088 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/api/assignments/6  
+2017-09-15 13:03:25.735 +02:00 [Information] Request finished in 686.9467ms 404 
+2017-09-15 13:03:25.799 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/favicon.ico  
+2017-09-15 13:03:25.804 +02:00 [Information] Request finished in 5.2792ms 404 
+2017-09-15 13:03:47.823 +02:00 [Information] Request starting HTTP/1.1 POST http://localhost:22608/assignments/102/submissions application/json 662
+2017-09-15 13:03:48.536 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.Post (Webdictaat.Apis.Databases)" with arguments (["102", "Webdictaat.Apis.Databases.ViewModel.SubmissionVM"]) - ModelState is Valid
+2017-09-15 13:03:53.343 +02:00 [Information] Executed DbCommand (3ms) [Parameters=[@__assignmentId_0='?', @__form_Email_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__form_Email_1)
+LIMIT 1
+2017-09-15 13:04:06.144 +02:00 [Information] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 255), @p1='?', @p2='?' (Size = 255), @p3='?' (Size = 255), @p4='?', @p5='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO `Submissions` (`Email`, `AssignmentId`, `Message`, `Query`, `StatusId`, `TimeStamp`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2017-09-15 13:04:06.190 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 13:04:06.255 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 13:04:06.368 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.Post (Webdictaat.Apis.Databases)" in 18412.8078ms
+2017-09-15 13:04:06.375 +02:00 [Information] Request finished in 18552.5721ms 200 application/json; charset=utf-8
+2017-09-15 13:04:10.122 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102/submissions/postman@gmail.com application/json 
+2017-09-15 13:04:10.181 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" with arguments (["102", "postman@gmail.com"]) - ModelState is Valid
+2017-09-15 13:04:10.250 +02:00 [Information] Executed DbCommand (1ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 13:04:10.255 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 13:04:10.269 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" in 129.0333ms
+2017-09-15 13:04:10.275 +02:00 [Information] Request finished in 152.0108ms 200 application/json; charset=utf-8
+2017-09-15 13:04:29.769 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102/submissions/postman@gmail.com application/json 
+2017-09-15 13:04:29.794 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" with arguments (["102", "postman@gmail.com"]) - ModelState is Valid
+2017-09-15 13:04:29.818 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 13:04:53.123 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 13:04:53.139 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" in 23366.8072ms
+2017-09-15 13:04:53.143 +02:00 [Information] Request finished in 23375.3034ms 200 application/json; charset=utf-8
+2017-09-15 13:08:34.029 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/api/assignments/6  
+2017-09-15 13:08:34.679 +02:00 [Information] Request finished in 686.8033ms 404 
+2017-09-15 13:08:34.741 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/favicon.ico  
+2017-09-15 13:08:34.748 +02:00 [Information] Request finished in 6.0053ms 404 
+2017-09-15 13:08:40.220 +02:00 [Information] Request starting HTTP/1.1 POST http://localhost:22608/assignments/102/submissions application/json 662
+2017-09-15 13:08:40.940 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.Post (Webdictaat.Apis.Databases)" with arguments (["102", "Webdictaat.Apis.Databases.ViewModel.SubmissionVM"]) - ModelState is Valid
+2017-09-15 13:08:45.106 +02:00 [Information] Executed DbCommand (2ms) [Parameters=[@__assignmentId_0='?', @__form_Email_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__form_Email_1)
+LIMIT 1
+2017-09-15 13:08:45.273 +02:00 [Information] Executed DbCommand (1ms) [Parameters=[@p2='?' (Size = 255), @p3='?', @p0='?' (Size = 255), @p1='?'], CommandType='Text', CommandTimeout='30']
+UPDATE `Submissions` SET `Query` = @p0, `TimeStamp` = @p1
+WHERE `Email` = @p2 AND `AssignmentId` = @p3;
+SELECT ROW_COUNT();
+2017-09-15 13:08:45.315 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 13:08:48.473 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 13:08:48.589 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.Post (Webdictaat.Apis.Databases)" in 8255.7116ms
+2017-09-15 13:08:48.606 +02:00 [Information] Request finished in 8386.6097ms 200 application/json; charset=utf-8
+2017-09-15 13:08:53.134 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102/submissions/postman@gmail.com application/json 
+2017-09-15 13:08:53.182 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" with arguments (["102", "postman@gmail.com"]) - ModelState is Valid
+2017-09-15 13:08:53.258 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 13:08:54.689 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 13:08:54.694 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" in 1552.4757ms
+2017-09-15 13:08:54.699 +02:00 [Information] Request finished in 1564.7894ms 200 application/json; charset=utf-8
+2017-09-15 13:13:37.679 +02:00 [Information] Request starting HTTP/1.1 POST http://localhost:22608/assignments/102/submissions application/json 662
+2017-09-15 13:13:37.679 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/api/assignments/6  
+2017-09-15 13:13:38.275 +02:00 [Information] Request finished in 657.0121ms 404 
+2017-09-15 13:13:38.353 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/favicon.ico  
+2017-09-15 13:13:38.357 +02:00 [Information] Request finished in 3.8798ms 404 
+2017-09-15 13:13:38.857 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.Post (Webdictaat.Apis.Databases)" with arguments (["102", "Webdictaat.Apis.Databases.ViewModel.SubmissionVM"]) - ModelState is Valid
+2017-09-15 13:13:40.061 +02:00 [Information] Executed DbCommand (3ms) [Parameters=[@__assignmentId_0='?', @__form_Email_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__form_Email_1)
+LIMIT 1
+2017-09-15 13:13:40.223 +02:00 [Information] Executed DbCommand (1ms) [Parameters=[@p3='?' (Size = 255), @p4='?', @p0='?' (Size = 255), @p1='?', @p2='?'], CommandType='Text', CommandTimeout='30']
+UPDATE `Submissions` SET `Query` = @p0, `StatusId` = @p1, `TimeStamp` = @p2
+WHERE `Email` = @p3 AND `AssignmentId` = @p4;
+SELECT ROW_COUNT();
+2017-09-15 13:13:40.302 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 13:13:40.337 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 13:13:40.423 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.Post (Webdictaat.Apis.Databases)" in 2152.763ms
+2017-09-15 13:13:40.423 +02:00 [Information] Request finished in 2821.3205ms 200 application/json; charset=utf-8
+2017-09-15 13:13:51.440 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102/submissions/postman@gmail.com application/json 
+2017-09-15 13:13:51.465 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" with arguments (["102", "postman@gmail.com"]) - ModelState is Valid
+2017-09-15 13:13:51.567 +02:00 [Information] Executed DbCommand (1ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 13:13:51.571 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 13:13:51.580 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" in 132.0958ms
+2017-09-15 13:13:51.585 +02:00 [Information] Request finished in 145.4982ms 200 application/json; charset=utf-8
+2017-09-15 13:17:07.482 +02:00 [Information] Request starting HTTP/1.1 POST http://localhost:22608/assignments/101/submissions application/json 134
+2017-09-15 13:17:07.502 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.Post (Webdictaat.Apis.Databases)" with arguments (["101", "Webdictaat.Apis.Databases.ViewModel.SubmissionVM"]) - ModelState is Valid
+2017-09-15 13:17:07.537 +02:00 [Information] Executed DbCommand (1ms) [Parameters=[@__assignmentId_0='?', @__form_Email_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__form_Email_1)
+LIMIT 1
+2017-09-15 13:17:07.559 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 255), @p1='?', @p2='?' (Size = 255), @p3='?' (Size = 255), @p4='?', @p5='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO `Submissions` (`Email`, `AssignmentId`, `Message`, `Query`, `StatusId`, `TimeStamp`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2017-09-15 13:17:07.580 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 13:17:07.582 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 13:17:07.584 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.Post (Webdictaat.Apis.Databases)" in 98.3971ms
+2017-09-15 13:17:07.589 +02:00 [Information] Request finished in 115.9903ms 200 application/json; charset=utf-8
+2017-09-15 13:20:18.657 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/api/assignments/6  
+2017-09-15 13:20:19.251 +02:00 [Information] Request finished in 624.0672ms 404 
+2017-09-15 13:20:19.311 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/favicon.ico  
+2017-09-15 13:20:19.320 +02:00 [Information] Request finished in 7.7894ms 404 
+2017-09-15 13:22:40.937 +02:00 [Information] Request starting HTTP/1.1 POST http://localhost:22608/assignments/102/submissions application/json 658
+2017-09-15 13:22:41.587 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.Post (Webdictaat.Apis.Databases)" with arguments (["102", "Webdictaat.Apis.Databases.ViewModel.SubmissionVM"]) - ModelState is Valid
+2017-09-15 13:22:43.007 +02:00 [Information] Executed DbCommand (2ms) [Parameters=[@__assignmentId_0='?', @__form_Email_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__form_Email_1)
+LIMIT 1
+2017-09-15 13:22:43.156 +02:00 [Information] Executed DbCommand (1ms) [Parameters=[@p3='?' (Size = 255), @p4='?', @p0='?' (Size = 255), @p1='?', @p2='?'], CommandType='Text', CommandTimeout='30']
+UPDATE `Submissions` SET `Query` = @p0, `StatusId` = @p1, `TimeStamp` = @p2
+WHERE `Email` = @p3 AND `AssignmentId` = @p4;
+SELECT ROW_COUNT();
+2017-09-15 13:22:43.210 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 13:22:43.240 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 13:22:43.336 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.Post (Webdictaat.Apis.Databases)" in 2309.6328ms
+2017-09-15 13:22:43.339 +02:00 [Information] Request finished in 2412.5071ms 200 application/json; charset=utf-8
+2017-09-15 13:22:46.213 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102/submissions/postman@gmail.com application/json 
+2017-09-15 13:22:46.261 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" with arguments (["102", "postman@gmail.com"]) - ModelState is Valid
+2017-09-15 13:22:46.326 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 13:22:46.331 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 13:22:46.338 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" in 118.1596ms
+2017-09-15 13:22:46.339 +02:00 [Information] Request finished in 131.0734ms 200 application/json; charset=utf-8
+2017-09-15 13:26:06.347 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/api/assignments/6  
+2017-09-15 13:26:06.880 +02:00 [Information] Request finished in 566.4186ms 404 
+2017-09-15 13:26:06.945 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/favicon.ico  
+2017-09-15 13:26:06.952 +02:00 [Information] Request finished in 6.1514ms 404 
+2017-09-15 13:26:12.516 +02:00 [Information] Request starting HTTP/1.1 POST http://localhost:22608/assignments/102/submissions application/json 658
+2017-09-15 13:26:13.156 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.Post (Webdictaat.Apis.Databases)" with arguments (["102", "Webdictaat.Apis.Databases.ViewModel.SubmissionVM"]) - ModelState is Valid
+2017-09-15 13:26:14.308 +02:00 [Information] Executed DbCommand (2ms) [Parameters=[@__assignmentId_0='?', @__form_Email_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__form_Email_1)
+LIMIT 1
+2017-09-15 13:26:14.463 +02:00 [Information] Executed DbCommand (1ms) [Parameters=[@p2='?' (Size = 255), @p3='?', @p0='?' (Size = 611), @p1='?'], CommandType='Text', CommandTimeout='30']
+UPDATE `Submissions` SET `Query` = @p0, `TimeStamp` = @p1
+WHERE `Email` = @p2 AND `AssignmentId` = @p3;
+SELECT ROW_COUNT();
+2017-09-15 13:26:14.489 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 13:26:14.523 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 13:26:14.623 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.Post (Webdictaat.Apis.Databases)" in 2004.8138ms
+2017-09-15 13:26:14.623 +02:00 [Information] Request finished in 2119.4151ms 200 application/json; charset=utf-8
+2017-09-15 13:26:17.689 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/assignments/102/submissions/postman@gmail.com application/json 
+2017-09-15 13:26:17.743 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" with arguments (["102", "postman@gmail.com"]) - ModelState is Valid
+2017-09-15 13:26:17.794 +02:00 [Information] Executed DbCommand (3ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 13:26:17.797 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 13:26:17.801 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.GetSubmission (Webdictaat.Apis.Databases)" in 103.5151ms
+2017-09-15 13:26:17.806 +02:00 [Information] Request finished in 118.1991ms 200 application/json; charset=utf-8
+2017-09-15 13:50:45.881 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/api/assignments/6  
+2017-09-15 13:50:46.604 +02:00 [Information] Request finished in 760.3799ms 404 
+2017-09-15 13:50:46.687 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/favicon.ico  
+2017-09-15 13:50:46.693 +02:00 [Information] Request finished in 4.8647ms 404 
+2017-09-15 13:51:20.154 +02:00 [Information] Request starting HTTP/1.1 POST http://localhost:22608/assignments/212/submissions application/json 137
+2017-09-15 13:51:20.899 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.Post (Webdictaat.Apis.Databases)" with arguments (["212", "Webdictaat.Apis.Databases.ViewModel.SubmissionVM"]) - ModelState is Valid
+2017-09-15 13:51:22.320 +02:00 [Information] Executed DbCommand (3ms) [Parameters=[@__assignmentId_0='?', @__form_Email_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__form_Email_1)
+LIMIT 1
+2017-09-15 13:51:22.536 +02:00 [Information] Executed DbCommand (2ms) [Parameters=[@p0='?' (Size = 255), @p1='?', @p2='?' (Size = 255), @p3='?' (Size = 89), @p4='?', @p5='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO `Submissions` (`Email`, `AssignmentId`, `Message`, `Query`, `StatusId`, `TimeStamp`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2017-09-15 13:51:22.578 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 13:51:22.625 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 13:51:22.735 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.Post (Webdictaat.Apis.Databases)" in 2467.6387ms
+2017-09-15 13:51:22.746 +02:00 [Information] Request finished in 2591.1629ms 200 application/json; charset=utf-8
+2017-09-15 13:51:38.311 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/api/assignments/6  
+2017-09-15 13:51:38.315 +02:00 [Information] Request finished in 5.0374ms 404 
+2017-09-15 13:57:03.298 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/api/assignments/6  
+2017-09-15 13:57:03.298 +02:00 [Information] Request starting HTTP/1.1 POST http://localhost:22608/assignments/212/submissions application/json 140
+2017-09-15 13:57:03.977 +02:00 [Information] Request finished in 758.3603ms 404 
+2017-09-15 13:57:04.039 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:22608/favicon.ico  
+2017-09-15 13:57:04.045 +02:00 [Information] Request finished in 3.9178ms 404 
+2017-09-15 13:57:04.549 +02:00 [Information] Executing action method "webs2_api.Controllers.AssignmentsController.Post (Webdictaat.Apis.Databases)" with arguments (["212", "Webdictaat.Apis.Databases.ViewModel.SubmissionVM"]) - ModelState is Valid
+2017-09-15 13:57:05.769 +02:00 [Information] Executed DbCommand (3ms) [Parameters=[@__assignmentId_0='?', @__form_Email_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__form_Email_1)
+LIMIT 1
+2017-09-15 13:57:05.938 +02:00 [Information] Executed DbCommand (1ms) [Parameters=[@p3='?' (Size = 255), @p4='?', @p0='?' (Size = 92), @p1='?', @p2='?'], CommandType='Text', CommandTimeout='30']
+UPDATE `Submissions` SET `Query` = @p0, `StatusId` = @p1, `TimeStamp` = @p2
+WHERE `Email` = @p3 AND `AssignmentId` = @p4;
+SELECT ROW_COUNT();
+2017-09-15 13:57:05.983 +02:00 [Information] Executed DbCommand (0ms) [Parameters=[@__assignmentId_0='?', @__userId_1='?' (Size = 255)], CommandType='Text', CommandTimeout='30']
+SELECT `s`.`Email`, `s`.`AssignmentId`, `s`.`Message`, `s`.`Query`, `s`.`StatusId`, `s`.`TimeStamp`
+FROM `Submissions` AS `s`
+WHERE (`s`.`AssignmentId` = @__assignmentId_0) AND (`s`.`Email` = @__userId_1)
+LIMIT 1
+2017-09-15 13:57:06.019 +02:00 [Information] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext".
+2017-09-15 13:57:06.122 +02:00 [Information] Executed action "webs2_api.Controllers.AssignmentsController.Post (Webdictaat.Apis.Databases)" in 2146.2694ms
+2017-09-15 13:57:06.129 +02:00 [Information] Request finished in 2919.2996ms 200 application/json; charset=utf-8
