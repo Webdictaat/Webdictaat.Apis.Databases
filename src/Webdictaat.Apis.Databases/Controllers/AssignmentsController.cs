@@ -78,14 +78,14 @@ namespace webs2_api.Controllers
             try
             {
                 
-                var submission = _repo.Submissions.Where(s => s.AssignmentId == assignmentId && s.Email == userId).FirstOrDefault();
+                var submission = _repo.Submissions.Where(s => s.AssignmentId == assignmentId && s.UserName == userId).FirstOrDefault();
 
                 if (submission == null)
                     return null;
 
                 var response = new SubmissionVM();
                 response.AssignmentId = submission.AssignmentId;
-                response.Email = submission.Email;
+                response.Email = submission.UserName;
                 response.Query = submission.Query;
                 response.Timestamp = submission.TimeStamp;
                 response.Message = submission.Message;
@@ -121,13 +121,13 @@ namespace webs2_api.Controllers
             {
                 try
                 {
-                    var submission = _repo.Submissions.Where(s => s.AssignmentId == assignmentId && s.Email == form.Email).FirstOrDefault();
+                    var submission = _repo.Submissions.Where(s => s.AssignmentId == assignmentId && s.UserName == form.Email).FirstOrDefault();
 
                     if (submission == null)
                     {
                         submission = new Submission()
                         {
-                            Email = form.Email,
+                            UserName = form.Email,
                             Query = form.Query,
                             TimeStamp = DateTime.Now,
                             AssignmentId = assignmentId

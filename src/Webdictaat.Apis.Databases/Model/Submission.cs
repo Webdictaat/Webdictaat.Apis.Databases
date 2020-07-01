@@ -11,7 +11,7 @@ namespace webs2_api.Model
     {
         public int AssignmentId { get; set; }
 
-        public string Email { get; set; }
+        public string UserName { get; set; }
 
         public string Query { get; set; }
 

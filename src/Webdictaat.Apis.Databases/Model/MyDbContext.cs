@@ -20,7 +20,7 @@ namespace Webdictaat.Apis.Databases.Model
         {
             var entity = modelBuilder.Entity<Submission>();
             entity.Property(s => s.Query).HasColumnType("text");
-            entity.HasKey(c => new { c.Email, c.AssignmentId });
+            entity.HasKey(c => new { c.UserName, c.AssignmentId });
                 
             base.OnModelCreating(modelBuilder);
         }
