@@ -10,5 +10,7 @@ namespace Webdictaat.Apis.Databases.ViewModel
         public int AssignmentId { get; set; }
 
         public string ExpectedOutput { get; set; }
+        public string Description { get; set; }
+        public string Title { get; set; }
     }
 }

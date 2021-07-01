@@ -39,7 +39,10 @@ namespace  Webdictaat.Apis.Databases.Controllers
 
             var response = new AssignmentVM();
             response.AssignmentId = assignment.ID;
-            response.ExpectedOutput = assignment.resultsHTML;
+            response.ExpectedOutput = assignment.ResultsHTML;
+            response.Description = assignment.Description;
+            response.Title = "Opdracht " + assignment.MetaTag;
+
             return response;
         }
 
